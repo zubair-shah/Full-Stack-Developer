@@ -5,11 +5,10 @@ import { BackgroundMiute, BackgroundSecond,
     MiuteStroke
 } from './images'       
 function Clock() {
-    const [clock , setClock] = useState(new Date())
     const [hours , setHours] = useState('')
     const [second , setSecond] = useState('')
     const [minutes, setMinutes] = useState('')
-      const [loop, setLoop] = useState(new Date())
+      const [loop, setLoop] = useState()
     useEffect(() => {
          setLoop(setInterval(() => {
              let date = new Date();
@@ -17,7 +16,6 @@ function Clock() {
     let getHours = date.getHours();
     let getMinutes = date.getMinutes();
              let getSeconds = date.getSeconds();
-             
              setHours(getHours)
              setMinutes(getMinutes)
              setSecond(getSeconds)
@@ -28,7 +26,7 @@ function Clock() {
             console.log('cleaning up')
             clearInterval(loop)
         }
-    }, clock)
+    }, [second])
   return (
       <div className='main-clock'>
           <div className="inner-clock">
